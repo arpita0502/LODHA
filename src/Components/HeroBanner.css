@@ -1,0 +1,91 @@
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Make it full height of the screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo-overlay {
+    position: absolute;
+    top: 20px;
+    /* Adjusted for better positioning */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-logo {
+    max-width: 280px;
+}
+
+
+/* Media queries for different screen sizes */
+
+@media screen and (max-width: 1024px) {
+    .hero-section {
+        height: 80vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-section {
+        height: 70vh;
+    }
+    .logo-overlay {
+        top: 15px;
+    }
+    .hero-logo {
+        max-width: 220px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-section {
+        height: 60vh;
+    }
+    .logo-overlay {
+        top: 10px;
+    }
+    .hero-logo {
+        max-width: 180px;
+    }
+}
+
+
+/* For very small screens */
+
+@media screen and (max-width: 320px) {
+    .hero-section {
+        height: 50vh;
+    }
+    .hero-logo {
+        max-width: 150px;
+    }
+}
+
+
+/* Handle landscape orientation on mobile */
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        height: 100vh;
+    }
+    .logo-overlay {
+        top: 10px;
+    }
+    .hero-logo {
+        max-width: 160px;
+    }
+}

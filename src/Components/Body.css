@@ -1,0 +1,361 @@
+/* Body.css */
+
+
+/* Base styles */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+}
+
+.body-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/* Logo and Main Description */
+
+.logo-container {
+    text-align: center;
+    margin: 60px auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logo-mark {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.logo-bars {
+    width: 30px;
+    height: 4px;
+    background-color: #b89d5d;
+    margin: 2px 0;
+}
+
+.logo-text {
+    text-align: left;
+}
+
+.logo-text h1.lodha {
+    font-family: 'Times New Roman', Times, serif;
+    color: #b89d5d;
+    font-size: 32px;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.logo-text h2.massimo {
+    font-family: 'Times New Roman', Times, serif;
+    color: #888;
+    font-size: 24px;
+    font-weight: 300;
+    margin: 0;
+    letter-spacing: 3px;
+}
+
+.main-description {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #555;
+}
+
+.logo-animate {
+    animation: logoReveal 1.2s ease-out forwards;
+}
+
+
+/* Content section styling */
+
+.content-section {
+    display: flex;
+    flex-direction: row;
+    /* Changed from column to row for all screen sizes */
+    width: 100%;
+    margin-bottom: 100px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.content-section.reverse {
+    flex-direction: row-reverse;
+    /* Always reverse for second section */
+}
+
+.content-section.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Image wrapper and container */
+
+.image-container {
+    width: 40%;
+    /* Fixed width for all screen sizes */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    opacity: 0;
+    transform: translateX(0);
+    transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    padding: 0 15px;
+}
+
+.content-section.animate-in .reveal-left {
+    animation: revealLeft 0.8s 0.2s forwards;
+}
+
+.content-section.animate-in .reveal-right {
+    animation: revealRight 0.8s 0.4s forwards;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 1.2s ease;
+}
+
+
+/* Content wrapper and container */
+
+.content-container {
+    width: 50%;
+    /* Fixed width for all screen sizes */
+    padding: 30px 15px;
+    opacity: 0;
+    transform: translateX(0);
+    transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+
+/* Typography */
+
+.section-heading {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    /* Slightly smaller for small screens */
+    line-height: 1.3;
+    margin-bottom: 24px;
+    color: #333;
+    font-weight: 500;
+    position: relative;
+}
+
+.section-heading:after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #b89d5d;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s 0.6s ease;
+}
+
+.content-section.animate-in .section-heading:after {
+    transform: scaleX(1);
+}
+
+.content-container p {
+    font-size: 16px;
+    /* Slightly smaller for small screens */
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+}
+
+
+/* Animation effects */
+
+.image-container:hover img {
+    transform: scale(1.05);
+}
+
+
+/* Responsive design improvements */
+
+@media (min-width: 768px) {
+    .image-container,
+    .content-container {
+        padding: 0 25px;
+    }
+    .section-heading {
+        font-size: 36px;
+    }
+    .content-container p {
+        font-size: 18px;
+    }
+}
+
+
+/* Additional responsive fixes for small screens */
+
+@media (max-width: 767px) {
+    /* Keep row layout but adjust spacing */
+    .content-section,
+    .content-section.reverse {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .image-container,
+    .content-container {
+        width: 100%;
+        padding: 0 10px;
+    }
+    /* Ensure proper order for small screens */
+    .content-section .image-container {
+        order: 1;
+    }
+    .content-section .content-container {
+        order: 2;
+    }
+}
+
+
+/* Animation keyframes */
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.content-section .image-container {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.8s ease-out;
+}
+
+
+/* When Section is Visible, Trigger Animation */
+
+.content-section.animate-in .image-container {
+    animation: slideInRight 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes revealLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes revealRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes logoReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Enhanced hover effects */
+
+@media (min-width: 1024px) {
+    .image-container {
+        transition: all 0.5s ease;
+        overflow: hidden;
+    }
+    .image-container:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    .content-container {
+        transition: transform 0.5s ease;
+    }
+    .content-container:hover {
+        transform: translateY(-5px);
+    }
+    .image-container:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.2) 100%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    .image-container:hover:after {
+        opacity: 1;
+    }
+}
+
+
+/* Additional animation effects for staggered appearance */
+
+.content-section:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.content-section:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+.content-section:nth-child(4) {
+    transition-delay: 0.6s;
+}
